@@ -1,0 +1,22 @@
+local_backend: true
+
+i18n:
+  structure: 'multiple_root_folders'
+  locales: ['en', 'ar']
+  default_locale: 'en'
+
+
+backend:
+  name: royal
+  repo: somethingxdev/royal
+
+media_folder: /static/media
+public_folder: /media
+
+collections:
+  - name: posts
+    label: Posts
+    folder: /content/posts
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Body, name: body, widget: markdown }

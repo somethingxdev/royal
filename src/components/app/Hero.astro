@@ -1,0 +1,63 @@
+---
+import { Image } from "astro:assets";
+import heroImage from "@/assets/hero-image.png";
+import { useTranslations, type Lang } from "@/i18n";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<section class="relative overflow-hidden bg-[#916a2a]">
+  <div class="flex flex-col md:flex-row">
+    <div class="container relative">
+      <div class="relative z-10 max-w-2xl py-10 md:py-16 text-white">
+        <h1 class="text-3xl md:text-5xl font-bold uppercase mb-8 tracking-tight">
+          {t("hero.title1")}<br />
+          {t("hero.title2")}
+        </h1>
+
+        <div class="space-y-6 sm:text-lg md:text-xl font-medium mb-12 ">
+          <p>{t("hero.p1")}</p>
+          <p>{t("hero.p2")}</p>
+          <p>{t("hero.p3")}</p>
+          <div class="pt-4 border-t border-white/20">
+            <p class="font-bold mb-1">{t("hero.operatingRegions")}</p>
+            <p class="opacity-90">{t("hero.regions")}</p>
+          </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-6">
+          <a href="#services" class="button flex justify-center sm:px-10 py-3 sm:py-4 rounded-lg text-lg font-bold text-white transition-all hover:scale-105 hover:brightness-110"> {t("hero.requestService")} </a>
+          <a href="#contact" class="bg-white text-black flex justify-center sm:px-10 py-3 sm:py-4 rounded-lg text-lg font-bold transition-all hover:bg-neutral-100 hover:scale-105"> {t("hero.askQuestion")} </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-image-container -order-1 md:absolute md:top-0 md:right-0 md:w-1/2 md:h-full">
+      <Image src={heroImage} alt="Dubai Skyline" class="h-50 object-center md:size-full object-cover hero-image" />
+    </div>
+  </div>
+</section>
+
+<style>
+  .button {
+    background: linear-gradient(163deg, #956e2d 0%, #b79647 25.95%, #b59445 76.55%, #956e2d 100%);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  .hero-image-container {
+    clip-path: polygon(14% 0, 100% 0%, 100% 100%, 27% 100%);
+  }
+
+  @media (max-width: 768px) {
+    .hero-image-container {
+      clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%);
+    }
+  }
+
+ 
+</style>

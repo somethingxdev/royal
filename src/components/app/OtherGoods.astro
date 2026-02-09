@@ -1,0 +1,74 @@
+---
+import { Image } from "astro:assets";
+import SwiperCarousel from "./SwiperCarousel.astro";
+import industryImg from "@/assets/goods/industry.png";
+import commerceImg from "@/assets/goods/commerce.png";
+import customProductsImg from "@/assets/goods/custom-products.png";
+import consumerGoodsImg from "@/assets/goods/consumer-goods.png";
+import logisticsImg from "@/assets/goods/logistics.png";
+import decorImg from "@/assets/goods/decor.png";
+import { useTranslations, type Lang } from "@/i18n";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const categories = [
+  { name: t("goods.industry"), image: industryImg },
+  { name: t("goods.commerce"), image: commerceImg },
+  { name: t("goods.customProducts"), image: customProductsImg },
+  { name: t("goods.consumerGoods"), image: consumerGoodsImg },
+  { name: t("goods.logistics"), image: logisticsImg },
+];
+
+const cargoTypes = [t("goods.cargo1"), t("goods.cargo2"), t("goods.cargo3")];
+---
+
+<section class="py-10 md:py-20 border-b border-gray-200">
+  <div class="container relative">
+    <div class="mb-10 space-y-5">
+      <h2 class="text-3xl md:text-5xl font-bold text-[#916a2a]">{t("goods.title")}</h2>
+      <p class="text-lg md:text-xl font-semibold text-[#b79647]">{t("goods.subtitle")}</p>
+
+      <p>{t("goods.p1")}</p>
+    </div>
+
+  
+      <h3 class="text-2xl md:text-3xl font-bold text-[#916a2a] mb-10">{t("goods.categoriesTitle")}</h3>
+      <SwiperCarousel slides={categories} class="interior-styles-swiper" />
+   
+
+    <h3 class="text-2xl md:text-3xl font-bold text-[#916a2a] mb-5">{t("goods.cargoTitle")}</h3>
+    <ul class="grid gap-y-1 mb-10">
+      {
+        cargoTypes.map((cargoType) => (
+          <li class="flex items-start gap-2 md:text-lg font-medium">
+            <span class="mt-2.5 w-1.5 h-1.5 rounded-full bg-black shrink-0" />
+            {cargoType}
+          </li>
+        ))
+      }
+    </ul>
+
+    <div class="space-y-6 md:text-lg font-medium mb-12">
+      <p>{t("goods.p2")}</p>
+      <p>{t("goods.p3")}</p>
+    </div>
+
+    <div class="grid lg:grid-cols-[2fr_1fr] gap-10 items-center">
+      <div class="mt-16">
+        <h3 class="text-2xl md:text-3xl font-bold text-[#916a2a] mb-6">{t("goods.supportTitle")}</h3>
+        <p class="md:text-lg font-medium">{t("goods.supportDesc")}</p>
+      </div>
+
+      <div class="relative flex justify-center lg:justify-end">
+        <div class="relative z-10 w-full max-w-[250px]">
+          <Image src={decorImg} alt="Comprehensive Support" class="w-full h-auto" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

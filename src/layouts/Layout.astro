@@ -1,0 +1,31 @@
+---
+import { Font } from "astro:assets";
+import "@/styles/global.css";
+import Header from "@/components/app/Header.astro";
+import Footer from "@/components/app/Footer.astro";
+import { getLangFromUrl, useTranslations } from "@/i18n";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const dir = lang === "ar" ? "rtl" : "ltr";
+---
+
+<!doctype html>
+<html lang={lang} dir={dir}>
+  <head>
+    <Font cssVariable="--font-sans" preload />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{t("page.title")}</title>
+  </head>
+  <body>
+    <Header lang={lang} />
+    <main class="overflow-x-hidden">
+      <slot />
+    </main>
+    <Footer lang={lang} />
+  </body>
+</html>

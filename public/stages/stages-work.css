@@ -1,0 +1,260 @@
+/* Base styles */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Mazzard H", "Open Sans", Arial, sans-serif;
+  font-size: 18px;
+  line-height: 1.5;
+  color: #432c2e;
+}
+
+/* Container */
+.container {
+  display: flow-root;
+  box-sizing: content-box;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+@media (min-width: 640px) {
+  .container {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}
+
+@media (min-width: 960px) {
+  .container {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+}
+
+/* Section */
+.section-stages {
+  display: flow-root;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+@media (min-width: 960px) {
+  .section-stages {
+    padding-top: 70px;
+    padding-bottom: 70px;
+  }
+}
+
+/* Title styles */
+.title h2 {
+  margin: 0 0 20px 0;
+  font-family: "Mazzard H", "Open Sans", Arial, sans-serif;
+  font-weight: 700;
+  font-size: 1.7rem;
+  line-height: 1.3;
+  color: #333;
+}
+
+@media (min-width: 960px) {
+  .title h2 {
+    font-size: 2rem;
+  }
+}
+
+.title-line {
+  margin-bottom: 20px;
+}
+
+.title-line::before {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 4px;
+  background-color: #158ebd;
+}
+
+/* Subtitle */
+.subtitle {
+  max-width: 840px;
+  margin-bottom: 30px;
+}
+
+.subtitle p {
+  margin: 0 0 20px 0;
+}
+
+/* Stages Work - Main styles */
+.stages-work {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -20px;
+  row-gap: 40px;
+}
+
+@media (max-width: 1199px) {
+  .stages-work {
+    flex-direction: column;
+    row-gap: 0px;
+    margin-left: 0;
+  }
+}
+
+/* Stage item */
+.stages-work__item {
+  padding-left: 20px;
+  box-sizing: border-box;
+  position: relative;
+  flex-grow: 1;
+}
+
+@media (max-width: 1199px) {
+  .stages-work__item {
+    flex: 0 0 auto;
+    max-width: 460px;
+    padding-left: 70px;
+    display: flex;
+    min-height: 106px;
+    padding-bottom: 50px;
+    align-items: center;
+  }
+
+  .stages-work__item .stages-work__item-icon {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 10;
+  }
+
+  .stages-work__item:last-of-type {
+    padding-bottom: 0;
+    min-height: 56px;
+  }
+
+  .stages-work__item:last-of-type::after {
+    display: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .stages-work__item {
+    max-width: 100%;
+  }
+}
+
+/* Stage item text */
+.stages-work__item-text {
+  font-weight: 500;
+  margin: 0;
+}
+
+@media (max-width: 1199px) {
+  .stages-work__item-text {
+    margin: 0;
+  }
+}
+
+/* Stage item icon */
+.stages-work__item-icon {
+  margin-bottom: 10px;
+}
+
+/* Connecting arrows/lines */
+.stages-work__item::after {
+  display: block;
+  content: "";
+  position: absolute;
+  background-repeat: no-repeat;
+}
+
+/* Desktop arrows (horizontal) */
+@media (min-width: 1200px) {
+  .stages-work__item::after {
+    width: calc(100% - 76px);
+    right: -13px;
+    top: 20px;
+    height: 16px;
+    background-image: url("arrow-right.svg");
+    background-position: center right;
+  }
+}
+
+/* Mobile arrows (vertical) */
+@media (max-width: 1199px) {
+  .stages-work__item::after {
+    width: 16px;
+    left: 20px;
+    top: 20px;
+    bottom: 0;
+    background-image: url("arrow-down.svg");
+    background-position: bottom right;
+
+  }
+}
+
+/* Desktop layout - specific order for snake pattern */
+@media (min-width: 1200px) {
+  .stages-work__item-01 {
+    order: 1;
+  }
+  .stages-work__item-02 {
+    order: 2;
+  }
+  .stages-work__item-03 {
+    order: 3;
+  }
+  .stages-work__item-04 {
+    order: 4;
+  }
+  .stages-work__item-08 {
+    order: 5;
+  }
+  .stages-work__item-07 {
+    order: 6;
+  }
+  .stages-work__item-06 {
+    order: 7;
+  }
+  .stages-work__item-05 {
+    order: 8;
+  }
+
+  /* Corner connector after item 4 */
+  .stages-work__item-04:after {
+    top: 28px;
+    right: 0;
+    background-image: url("border.svg");
+    background-position: top right;
+    height: 175px;
+  }
+
+  /* Left arrows for second row */
+  .stages-work__item-04 ~ .stages-work__item::after {
+    right: -5px;
+    background-image: url("arrow-left.svg");
+    background-position: center left;
+  }
+
+  /* Column widths */
+  .stages-work__item-01,
+  .stages-work__item-08 {
+    flex: 0 0 190px;
+    max-width: 190px;
+  }
+
+  .stages-work__item-02,
+  .stages-work__item-07,
+  .stages-work__item-06 {
+    flex: 0 0 295px;
+    max-width: 295px;
+  }
+
+  .stages-work__item-03 {
+    flex: 0 0 400px;
+    max-width: 400px;
+  }
+}

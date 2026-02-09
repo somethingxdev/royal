@@ -1,0 +1,24 @@
+---
+import Hero from "@/components/app/Hero.astro";
+import Services from "@/components/app/Services.astro";
+import InteriorDecor from "@/components/app/InteriorDecor.astro";
+import AutomotiveParts from "@/components/app/AutomotiveParts.astro";
+import OtherGoods from "@/components/app/OtherGoods.astro";
+import InternationalTrade from "@/components/app/InternationalTrade.astro";
+import HowWeWork from "@/components/app/HowWeWork.astro";
+import AboutUs from "@/components/app/AboutUs.astro";
+import Layout from "@/layouts/Layout.astro";
+
+const lang = "ar" as const;
+---
+
+<Layout>
+  <Hero lang={lang} />
+  <Services lang={lang} />
+  <InteriorDecor lang={lang} />
+  <AutomotiveParts lang={lang} />
+  <OtherGoods lang={lang} />
+  <InternationalTrade lang={lang} />
+  <AboutUs lang={lang} />
+  <HowWeWork lang={lang} />
+</Layout>

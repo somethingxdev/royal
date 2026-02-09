@@ -1,0 +1,136 @@
+---
+import { Image } from "astro:assets";
+import furnitureImg from "@/assets/services/furniture.png";
+import automotiveImg from "@/assets/services/automotive.png";
+import tradeImg from "@/assets/services/trade.png";
+import { useTranslations, type Lang } from "@/i18n";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const services = [
+  {
+    title: t("services.furniture.title"),
+    subtitle: t("services.furniture.subtitle"),
+    description: t("services.furniture.description"),
+    keyAdvantages: t("services.furniture.advantages").split("|"),
+    designServices: t("services.furniture.designServices"),
+    image: furnitureImg,
+    buttonText: t("services.furniture.button"),
+  },
+  {
+    title: t("services.automotive.title"),
+    subtitle: t("services.automotive.subtitle"),
+    description: t("services.automotive.description"),
+    keyAdvantages: t("services.automotive.advantages").split("|"),
+    coverage: t("services.automotive.coverage"),
+    image: automotiveImg,
+    buttonText: t("services.automotive.button"),
+  },
+  {
+    title: t("services.trade.title"),
+    subtitle: t("services.trade.subtitle"),
+    description: t("services.trade.description"),
+    ourServices: t("services.trade.ourServices").split("|"),
+    ourNetwork: t("services.trade.ourNetwork"),
+    image: tradeImg,
+    buttonText: t("services.trade.button"),
+  },
+];
+---
+
+<section id="services" class="py-10 md:py-20 border-b border-gray-200">
+  <div class="container">
+    <div class="mb-8 md:mb-16">
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-[#916a2a] mb-6">{t("services.title")}</h2>
+      <p class="text-lg md:text-xl md:max-w-2xl ">{t("services.subtitle")}</p>
+    </div>
+
+    <div class="space-y-12">
+      {
+        services.map((service) => (
+          <div class="grid md:grid-cols-[1fr_2fr] items-stretch gap-5">
+            <div class="relative flex items-start h-auto gap-2">
+              <div class="size-15 bg-linear-to-b from-[#956e2d] to-[#b79647] z-10 hidden md:block rounded-sm opacity-80 shrink-0 sticky top-5" />
+              <div class="rounded-sm overflow-hidden shadow-lg h-60 w-full md:size-full">
+                <Image src={service.image} alt={service.title} class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+              </div>
+            </div>
+
+            <div class="bg-primary-light p-5 md:p-8 rounded-sm relative">
+              <div class="flex flex-col md:flex-row md:items-start justify-between gap-4 mb-6">
+                <div>
+                  <h3 class="text-2xl md:text-3xl font-bold text-[#916a2a] mb-1">{service.title}</h3>
+                  <p class="md:text-xl font-semibold text-[#b79647] opacity-80">{service.subtitle}</p>
+                </div>
+                <button class="service-button self-start px-6 py-2 text-sm font-bold text-white rounded-sm uppercase tracking-wider transition-all hover:brightness-110">{service.buttonText}</button>
+              </div>
+
+              <p class="mb-8  md:text-lg font-medium">{service.description}</p>
+
+              {service.keyAdvantages && (
+                <div class="mb-8">
+                  <h4 class="text-[#916a2a] font-bold text-xl mb-4">{t("services.keyAdvantages")}</h4>
+                  <ul class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2">
+                    {service.keyAdvantages.map((item) => (
+                      <li class="flex items-center gap-2 font-medium md:text-lg">
+                        <span class="w-1.5 h-1.5 rounded-full bg-[#916a2a]" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {service.ourServices && (
+                <div class="mb-8">
+                  <h4 class="text-[#916a2a] font-bold text-xl mb-4">{t("services.ourServices")}</h4>
+                  <ul class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2">
+                    {service.ourServices.map((item) => (
+                      <li class="flex items-center gap-2 font-medium md:text-lg">
+                        <span class="w-1.5 h-1.5 rounded-full bg-[#916a2a]" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {service.designServices && (
+                <div class="bg-[#b79647] p-4 rounded-sm text-white">
+                  <h4 class="font-bold md:text-lg mb-1">{t("services.designServices")}</h4>
+                  <p class="text-white/90 leading-tight">{service.designServices}</p>
+                </div>
+              )}
+
+              {service.coverage && (
+                <div class="mt-4">
+                  <h4 class="text-[#916a2a] font-bold md:text-lg inline">{t("services.coverage")}</h4>
+                  <p class="text-gray-800 font-medium inline ml-2 md:text-lg">{service.coverage}</p>
+                </div>
+              )}
+
+              {service.ourNetwork && (
+                <div class="mt-4">
+                  <h4 class="text-[#916a2a] font-bold md:text-lg inline">{t("services.ourNetwork")}</h4>
+                  <p class="text-gray-800 font-medium inline ml-2 md:text-lg">{service.ourNetwork}</p>
+                </div>
+              )}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .service-button {
+    background: linear-gradient(163deg, #956e2d 0%, #b79647 25.95%, #b59445 76.55%, #956e2d 100%);
+    box-shadow: 0 2px 10px rgba(145, 106, 42, 0.2);
+  }
+</style>
