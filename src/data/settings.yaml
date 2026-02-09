@@ -1,0 +1,67 @@
+en:
+  phone: "+996 555 989 710"
+  email: "royal@gmail.com"
+  requestCallbackBtn: "Request a callback"
+  headerMenu:
+    - label: Home
+      url: "/"
+    - label: About us
+      url: "#about"
+    - label: Services
+      url: "#services"
+      children:
+        - label: Furniture & Interior Decor
+          url: "#decor"
+        - label: Automotive Parts
+          url: "#parts"
+        - label: Other Goods
+          url: "#goods"
+        - label: International Trade
+          url: "#trade"
+    - label: Contact us
+      url: "#contacts"
+  footerMenu:
+    - label: About the Company
+      url: "#about"
+    - label: Services
+      url: "#services"
+    - label: Contacts
+      url: "#contacts"
+    - label: Privacy Policy
+      url: "#privacy"
+    - label: Sitemap
+      url: "#sitemap"
+
+ar:
+  phone: "+996 555 989 710"
+  email: "royal@gmail.com"
+  requestCallbackBtn: "طلب معاودة الاتصال"
+  headerMenu:
+    - label: الرئيسية
+      url: "/"
+    - label: من نحن
+      url: "#about"
+    - label: الخدمات
+      url: "#services"
+      children:
+        - label: الأثاث والديكور
+          url: "#decor"
+        - label: قطع غيار السيارات
+          url: "#parts"
+        - label: سلع أخرى
+          url: "#goods"
+        - label: التجارة الدولية
+          url: "#trade"
+    - label: اتصل بنا
+      url: "#contacts"
+  footerMenu:
+    - label: عن الشركة
+      url: "#about"
+    - label: الخدمات
+      url: "#services"
+    - label: جهات الاتصال
+      url: "#contacts"
+    - label: سياسة الخصوصية
+      url: "#privacy"
+    - label: خريطة الموقع
+      url: "#sitemap"

@@ -1,0 +1,231 @@
+en:
+  sections:
+    - id: decor
+      title: Furniture & Interior Decor
+      subtitle: European Collections for Your Space
+      paragraphs:
+        - text: We supply premium furniture, lighting equipment, decorative materials, and interior accessories from leading European manufacturers. Our range includes stylish and functional solutions for private homes and apartments, office spaces, restaurants, and commercial properties.
+        - text: Each collection is selected with a focus on current European design trends, high-quality materials, and long-lasting performance. We work exclusively with trusted brands that combine aesthetics, comfort, and practicality.
+      carousel:
+        - name: Loft
+          image: /src/assets/interior/loft.png
+        - name: Scandinavian
+          image: /src/assets/interior/scandi.png
+        - name: Minimalism
+          image: /src/assets/interior/minimalim.png
+        - name: Provence
+          image: /src/assets/interior/province.png
+        - name: Neoclassical
+          image: /src/assets/interior/neoclassic.png
+      carouselTitle: Interior Styles
+      advantagesTitle: Our Advantages
+      advantages:
+        - text: Exclusive European brands
+        - text: Modern design and well-thought-out solutions
+        - text: Reliable and efficient logistics
+        - text: High-quality materials and craftsmanship
+        - text: Competitive pricing without compromising quality
+      bottomTitle: Interior Design & Selection Services
+      bottomDescription: We offer personalized interior design consultations. Our specialists help you choose furniture and décor that perfectly match your space, style, functional needs, and budget. You receive a complete solution — from concept to delivery.
+      bottomImage: /src/assets/design.png
+
+    - id: parts
+      title: Automotive Parts
+      subtitle: Genuine Components from Trusted Suppliers
+      paragraphs:
+        - text: We supply genuine automotive parts from reliable European manufacturers. We work with both retail customers and wholesale buyers, providing stable supply, transparent cooperation terms, and professional support.
+        - text: Our product range includes high-quality components for various vehicle brands and models. We carefully verify the origin of all products, ensuring authenticity, compliance with industry standards, and reliable performance.
+      carousel:
+        - name: Bearings
+          image: /src/assets/parts/bearings.png
+        - name: Brakes
+          image: /src/assets/parts/brakes.png
+        - name: Engines
+          image: /src/assets/parts/engine.png
+        - name: Suspension
+          image: /src/assets/parts/suspenstions.png
+        - name: Wheels
+          image: /src/assets/parts/wheels.png
+      carouselTitle: Automotive Parts & Components
+      advantagesTitle: Our Advantages
+      advantages:
+        - text: Genuine parts from trusted manufacturers
+        - text: Competitive wholesale pricing and flexible terms
+        - text: Quality guarantee on all products
+        - text: Fast and efficient regional delivery
+        - text: Experienced logistics and supply team
+      bottomTitle: Supply Coverage
+      bottomDescription: We deliver automotive parts to Europe, Asia, and the Middle East, ensuring timely delivery and full support at every step.
+      bottomImage: /src/assets/parts/decor.png
+
+    - id: goods
+      title: Other Goods
+      subtitle: Flexible Solutions for Diverse Product Categories
+      paragraphs:
+        - text: In addition to our core services, we work with a wide range of additional product categories within international trade operations. Royal Forwarding FZCO supports the sourcing and supply of goods that fall outside standard product groups, offering flexible solutions tailored to specific client requirements and target markets.
+      carousel:
+        - name: Industry
+          image: /src/assets/goods/industry.png
+        - name: Commerce
+          image: /src/assets/goods/commerce.png
+        - name: Custom Products
+          image: /src/assets/goods/custom-products.png
+        - name: Consumer Goods
+          image: /src/assets/goods/consumer-goods.png
+        - name: Logistics
+          image: /src/assets/goods/logistics.png
+      carouselTitle: Additional Product Categories
+      advantagesTitle: We handle various types of cargo, including
+      advantages:
+        - text: Industrial and technical products
+        - text: Consumer and commercial goods
+        - text: Specialized or non-standard items upon request
+      bottomTitle: Comprehensive Support
+      bottomDescription: We provide end-to-end solutions for sourcing, logistics, and market entry, ensuring your goods reach their destination safely and efficiently.
+      bottomImage: /src/assets/goods/decor.png
+
+    - id: trade
+      title: International Trade and Logistics
+      subtitle: Full Range of Services in International Trade
+      paragraphs:
+        - text: In addition to our core areas, we offer a comprehensive set of services in international trade and logistics. Our company acts as a reliable partner for businesses looking to enter new markets, expand their opportunities, and optimize their supply chains.
+        - text: We support our clients at every stage — from market research and supplier verification to delivery of goods. With a professional team, reliable logistics solutions, and international partnerships, we help businesses reduce risks, save time, and ensure smooth operations.
+      carousel:
+        - name: Suppliers
+          image: /src/assets/logistics/suplies.png
+        - name: Customs
+          image: /src/assets/logistics/customs.png
+        - name: Routes
+          image: /src/assets/logistics/routes.png
+        - name: Analytics
+          image: /src/assets/logistics/analytics.png
+        - name: Transport
+          image: /src/assets/logistics/transport.png
+      carouselTitle: Visual Highlights
+      advantagesTitle: Our Advantages
+      advantages:
+        - text: International logistics routes
+        - text: Customs clearance
+        - text: Consulting for entering foreign markets
+        - text: Supplier search and verification
+        - text: Multi-modal transport delivery
+        - text: Market research and analysis
+      bottomTitle: Our Network
+      bottomDescription: Europe, Asia, Middle East
+      bottomImage: /src/assets/logistics/decor.png
+
+ar:
+  sections:
+    - id: decor
+      title: الأثاث والديكور الداخلي
+      subtitle: مجموعات أوروبية لمساحتك
+      paragraphs:
+        - text: نوفر أثاثاً فاخراً ومعدات إضاءة ومواد ديكور وإكسسوارات داخلية من كبار المصنعين الأوروبيين. تشمل مجموعتنا حلولاً أنيقة وعملية للمنازل والشقق الخاصة والمساحات المكتبية والمطاعم والعقارات التجارية.
+        - text: يتم اختيار كل مجموعة مع التركيز على اتجاهات التصميم الأوروبي الحالية والمواد عالية الجودة والأداء طويل الأمد. نعمل حصرياً مع علامات تجارية موثوقة تجمع بين الجماليات والراحة والعملية.
+      carousel:
+        - name: لوفت
+          image: /src/assets/interior/loft.png
+        - name: اسكندنافي
+          image: /src/assets/interior/scandi.png
+        - name: بساطة
+          image: /src/assets/interior/minimalim.png
+        - name: بروفانس
+          image: /src/assets/interior/province.png
+        - name: نيوكلاسيكي
+          image: /src/assets/interior/neoclassic.png
+      carouselTitle: أنماط التصميم الداخلي
+      advantagesTitle: مزايانا
+      advantages:
+        - text: علامات تجارية أوروبية حصرية
+        - text: تصميم حديث وحلول مدروسة
+        - text: خدمات لوجستية موثوقة وفعالة
+        - text: مواد وحرفية عالية الجودة
+        - text: أسعار تنافسية دون المساومة على الجودة
+      bottomTitle: خدمات التصميم الداخلي والاختيار
+      bottomDescription: نقدم استشارات تصميم داخلي مخصصة. يساعدك متخصصونا في اختيار الأثاث والديكور الذي يتناسب تماماً مع مساحتك وأسلوبك واحتياجاتك الوظيفية وميزانيتك. تحصل على حل متكامل — من المفهوم إلى التسليم.
+      bottomImage: /src/assets/design.png
+
+    - id: parts
+      title: قطع غيار السيارات
+      subtitle: مكونات أصلية من موردين موثوقين
+      paragraphs:
+        - text: نوفر قطع غيار سيارات أصلية من مصنعين أوروبيين موثوقين. نعمل مع عملاء التجزئة والمشترين بالجملة، ونوفر إمداداً مستقراً وشروط تعاون شفافة ودعماً مهنياً.
+        - text: تشمل مجموعة منتجاتنا مكونات عالية الجودة لمختلف ماركات وموديلات المركبات. نتحقق بعناية من أصل جميع المنتجات، مما يضمن الأصالة والامتثال لمعايير الصناعة والأداء الموثوق.
+      carousel:
+        - name: محامل
+          image: /src/assets/parts/bearings.png
+        - name: فرامل
+          image: /src/assets/parts/brakes.png
+        - name: محركات
+          image: /src/assets/parts/engine.png
+        - name: نظام التعليق
+          image: /src/assets/parts/suspenstions.png
+        - name: عجلات
+          image: /src/assets/parts/wheels.png
+      carouselTitle: قطع غيار ومكونات السيارات
+      advantagesTitle: مزايانا
+      advantages:
+        - text: قطع أصلية من مصنعين موثوقين
+        - text: أسعار جملة تنافسية وشروط مرنة
+        - text: ضمان الجودة على جميع المنتجات
+        - text: توصيل إقليمي سريع وفعال
+        - text: فريق لوجستي وتوريد ذو خبرة
+      bottomTitle: تغطية التوريد
+      bottomDescription: نقوم بتوصيل قطع غيار السيارات إلى أوروبا وآسيا والشرق الأوسط، مع ضمان التسليم في الوقت المحدد والدعم الكامل في كل خطوة.
+      bottomImage: /src/assets/parts/decor.png
+
+    - id: goods
+      title: سلع أخرى
+      subtitle: حلول مرنة لفئات منتجات متنوعة
+      paragraphs:
+        - text: بالإضافة إلى خدماتنا الأساسية، نعمل مع مجموعة واسعة من فئات المنتجات الإضافية ضمن عمليات التجارة الدولية. تدعم رويال فورواردينغ FZCO توريد وإمداد السلع التي تقع خارج مجموعات المنتجات القياسية، وتقدم حلولاً مرنة مصممة وفقاً لمتطلبات العملاء المحددة والأسواق المستهدفة.
+      carousel:
+        - name: الصناعة
+          image: /src/assets/goods/industry.png
+        - name: التجارة
+          image: /src/assets/goods/commerce.png
+        - name: منتجات مخصصة
+          image: /src/assets/goods/custom-products.png
+        - name: سلع استهلاكية
+          image: /src/assets/goods/consumer-goods.png
+        - name: الخدمات اللوجستية
+          image: /src/assets/goods/logistics.png
+      carouselTitle: فئات المنتجات الإضافية
+      advantagesTitle: نتعامل مع أنواع مختلفة من البضائع، بما في ذلك
+      advantages:
+        - text: المنتجات الصناعية والتقنية
+        - text: السلع الاستهلاكية والتجارية
+        - text: العناصر المتخصصة أو غير القياسية حسب الطلب
+      bottomTitle: الدعم الشامل
+      bottomDescription: نقدم حلولاً شاملة للتوريد والخدمات اللوجستية ودخول السوق، مما يضمن وصول بضائعك إلى وجهتها بأمان وكفاءة.
+      bottomImage: /src/assets/goods/decor.png
+
+    - id: trade
+      title: التجارة الدولية والخدمات اللوجستية
+      subtitle: مجموعة كاملة من خدمات التجارة الدولية
+      paragraphs:
+        - text: بالإضافة إلى مجالاتنا الأساسية، نقدم مجموعة شاملة من الخدمات في التجارة الدولية والخدمات اللوجستية. تعمل شركتنا كشريك موثوق للشركات التي تتطلع إلى دخول أسواق جديدة وتوسيع فرصها وتحسين سلاسل التوريد الخاصة بها.
+        - text: ندعم عملاءنا في كل مرحلة — من أبحاث السوق والتحقق من الموردين إلى تسليم البضائع. مع فريق محترف وحلول لوجستية موثوقة وشراكات دولية، نساعد الشركات على تقليل المخاطر وتوفير الوقت وضمان عمليات سلسة.
+      carousel:
+        - name: الموردون
+          image: /src/assets/logistics/suplies.png
+        - name: الجمارك
+          image: /src/assets/logistics/customs.png
+        - name: الطرق
+          image: /src/assets/logistics/routes.png
+        - name: التحليلات
+          image: /src/assets/logistics/analytics.png
+        - name: النقل
+          image: /src/assets/logistics/transport.png
+      carouselTitle: أبرز النقاط
+      advantagesTitle: مزايانا
+      advantages:
+        - text: طرق لوجستية دولية
+        - text: التخليص الجمركي
+        - text: استشارات لدخول الأسواق الخارجية
+        - text: البحث عن الموردين والتحقق منهم
+        - text: النقل متعدد الوسائط
+        - text: أبحاث وتحليل السوق
+      bottomTitle: شبكتنا
+      bottomDescription: أوروبا، آسيا، الشرق الأوسط
+      bottomImage: /src/assets/logistics/decor.png

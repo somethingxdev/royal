@@ -1,24 +1,21 @@
 ---
-import Hero from "@/components/app/Hero.astro";
-import Services from "@/components/app/Services.astro";
-import InteriorDecor from "@/components/app/InteriorDecor.astro";
-import AutomotiveParts from "@/components/app/AutomotiveParts.astro";
-import OtherGoods from "@/components/app/OtherGoods.astro";
-import InternationalTrade from "@/components/app/InternationalTrade.astro";
-import HowWeWork from "@/components/app/HowWeWork.astro";
-import AboutUs from "@/components/app/AboutUs.astro";
-import Layout from "@/layouts/Layout.astro";
+import Hero from '@/components/base/Hero.astro';
+import Services from '@/components/base/Services.astro';
+import ServiceSection from '@/components/base/ServiceSection.astro';
+import HowWeWork from '@/components/base/Work.astro';
+import AboutUs from '@/components/base/About.astro';
+import Layout from '@/layouts/Layout.astro';
+import { getServiceSections } from '@/utils/serviceSections';
 
-const lang = "ar" as const;
+const lang = Astro.currentLocale || 'en';
+
+const serviceSections = getServiceSections(lang);
 ---
 
 <Layout>
   <Hero lang={lang} />
   <Services lang={lang} />
-  <InteriorDecor lang={lang} />
-  <AutomotiveParts lang={lang} />
-  <OtherGoods lang={lang} />
-  <InternationalTrade lang={lang} />
+  {serviceSections.map((section) => <ServiceSection lang={lang} data={section} />)}
   <AboutUs lang={lang} />
   <HowWeWork lang={lang} />
 </Layout>

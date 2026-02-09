@@ -1,0 +1,94 @@
+en:
+  title: Royal Forwarding Services
+  subtitle: We can fully handle your foreign trade operations or assist at any stage where support is needed.
+  cards:
+    - title: Furniture & Interior Decor
+      subtitle: European Collection for Your Home
+      button: Get a Consultation
+      description: We supply premium furniture, lighting equipment, decorative materials, and interior items from leading European manufacturers. Our collection features elegant solutions for residential spaces, offices, and restaurants.
+      advantagesLabel: 'Key Advantages:'
+      advantages:
+        - text: Exclusive European Brands
+        - text: High Quality and Durability
+        - text: Modern Design Solutions
+        - text: Competitive Prices
+        - text: Reliable Logistics
+      extraDescription: 'Personal interior design consultation — our specialists will help you select the perfect collection tailored to your vision and budget.'
+      footerLabel: null
+      footerValue: null
+    - title: Automotive Parts
+      subtitle: Genuine Parts from a Trusted Supplier
+      button: See Availability
+      description: We supply genuine automotive parts from European manufacturers. We work with both retail customers and wholesale buyers in Kyrgyzstan, Kazakhstan, and Turkey. We guarantee quality and timely delivery.
+      advantagesLabel: 'Key Advantages:'
+      advantages:
+        - text: Genuine Parts from Reliable Manufacturers
+        - text: Competitive Wholesale Prices
+        - text: Quality Guarantee on All Products
+        - text: Fast Regional Delivery
+        - text: Experienced Logistics Team
+      extraDescription: null
+      footerLabel: 'Coverage:'
+      footerValue: 'Europe, Asia, Middle East'
+    - title: International Trade and Logistics
+      subtitle: Full Range of International Trade
+      button: Receive an Offer
+      description: In addition to our core areas, we offer a wide range of services in international trade and logistics. Our company is a reliable partner for businesses looking to enter new markets and expand their opportunities.
+      advantagesLabel: 'Our Services:'
+      advantages:
+        - text: International Logistics Routes
+        - text: Customs Clearance
+        - text: Consulting for Entering Foreign Markets
+        - text: Supplier Search and Verification
+        - text: Multi-Modal Transport Delivery
+        - text: Market Research and Analysis
+      extraDescription: null
+      footerLabel: 'Our Network:'
+      footerValue: 'Europe, Asia, Middle East'
+ar:
+  title: خدمات رويال فورواردينغ
+  subtitle: يمكننا التعامل بالكامل مع عمليات التجارة الخارجية الخاصة بك أو المساعدة في أي مرحلة تحتاج فيها إلى الدعم.
+  cards:
+    - title: الأثاث والديكور الداخلي
+      subtitle: مجموعة أوروبية لمنزلك
+      button: احصل على استشارة
+      description: نوفر أثاثاً فاخراً ومعدات إضاءة ومواد ديكور وعناصر داخلية من كبار المصنعين الأوروبيين. تتميز مجموعتنا بحلول أنيقة للمساحات السكنية والمكاتب والمطاعم.
+      advantagesLabel: 'المزايا الرئيسية:'
+      advantages:
+        - text: علامات تجارية أوروبية حصرية
+        - text: جودة عالية ومتانة
+        - text: حلول تصميم حديثة
+        - text: أسعار تنافسية
+        - text: خدمات لوجستية موثوقة
+      extraDescription: 'استشارة تصميم داخلي شخصية — سيساعدك متخصصونا في اختيار المجموعة المثالية المصممة وفقاً لرؤيتك وميزانيتك.'
+      footerLabel: null
+      footerValue: null
+    - title: قطع غيار السيارات
+      subtitle: قطع أصلية من مورد موثوق
+      button: عرض التوفر
+      description: نوفر قطع غيار سيارات أصلية من مصنعين أوروبيين. نعمل مع عملاء التجزئة والمشترين بالجملة في قيرغيزستان وكازاخستان وتركيا. نضمن الجودة والتسليم في الوقت المحدد.
+      advantagesLabel: 'المزايا الرئيسية:'
+      advantages:
+        - text: قطع أصلية من مصنعين موثوقين
+        - text: أسعار جملة تنافسية
+        - text: ضمان الجودة على جميع المنتجات
+        - text: توصيل إقليمي سريع
+        - text: فريق لوجستي ذو خبرة
+      extraDescription: null
+      footerLabel: 'التغطية:'
+      footerValue: 'أوروبا، آسيا، الشرق الأوسط'
+    - title: التجارة الدولية والخدمات اللوجستية
+      subtitle: مجموعة كاملة من خدمات التجارة الدولية
+      button: احصل على عرض
+      description: بالإضافة إلى مجالاتنا الأساسية، نقدم مجموعة واسعة من الخدمات في التجارة الدولية والخدمات اللوجستية. شركتنا شريك موثوق للشركات التي تتطلع إلى دخول أسواق جديدة وتوسيع فرصها.
+      advantagesLabel: 'خدماتنا:'
+      advantages:
+        - text: طرق لوجستية دولية
+        - text: التخليص الجمركي
+        - text: استشارات لدخول الأسواق الخارجية
+        - text: البحث عن الموردين والتحقق منهم
+        - text: النقل متعدد الوسائط
+        - text: أبحاث وتحليل السوق
+      extraDescription: null
+      footerLabel: 'شبكتنا:'
+      footerValue: 'أوروبا، آسيا، الشرق الأوسط'

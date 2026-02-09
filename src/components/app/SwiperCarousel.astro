@@ -4,7 +4,7 @@ import type { ImageMetadata } from "astro";
 
 interface Slide {
   name: string;
-  image: ImageMetadata;
+  imagePath: string;
 }
 
 export interface Props {
@@ -14,16 +14,40 @@ export interface Props {
 
 const { slides, class: className = "" } = Astro.props;
 const swiperClass = `swiper w-full my-10 md:my-20 ${className}`.trim();
+
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/**/*.{jpeg,jpg,png,gif}"
+);
+
+const resolvedSlides = slides.map((slide) => {
+  if (!images[slide.imagePath]) {
+    throw new Error(
+      `"${slide.imagePath}" does not exist in glob: "/src/assets/**/*.{jpeg,jpg,png,gif}"`
+    );
+  }
+  return {
+    name: slide.name,
+    image: images[slide.imagePath](),
+  };
+});
 ---
 
 <div class={swiperClass} data-swiper="coverflow">
   <div class="swiper-wrapper space-x-3">
     {
-      slides.map((slide, index) => (
+      resolvedSlides.map((slide, index) => (
         <div class="swiper-slide" data-index={index}>
           <div class="relative overflow-hidden rounded-xl">
-            <Image src={slide.image} alt={slide.name} class="size-full object-cover" />
-            <div class="bg-[#d4ff80] px-6 py-2 text-center font-semibold text-sm whitespace-nowrap">{slide.name}</div>
+            <Image
+              src={slide.image}
+              alt={slide.name}
+              width={320}
+              height={320}
+              class="size-full object-cover"
+            />
+            <div class="bg-[#d4ff80] px-6 py-2 text-center font-semibold text-sm whitespace-nowrap">
+              {slide.name}
+            </div>
           </div>
         </div>
       ))

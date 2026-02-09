@@ -1,22 +1,189 @@
 local_backend: true
 
 i18n:
-  structure: 'multiple_root_folders'
+  structure: single_file
   locales: ['en', 'ar']
   default_locale: 'en'
 
-
 backend:
-  name: royal
+  name: github
   repo: somethingxdev/royal
 
-media_folder: /static/media
-public_folder: /media
+media_folder: /src/assets
+public_folder: /src/assets
 
-collections:
-  - name: posts
-    label: Posts
-    folder: /content/posts
+singletons:
+  # ── Hero Section ──
+  - name: hero
+    label: Hero
+    icon: home
+    file: src/data/hero.yaml
+    i18n: true
     fields:
-      - { label: Title, name: title, widget: string }
-      - { label: Body, name: body, widget: markdown }
+      - { label: Title, name: title, i18n: true }
+      - name: paragraphs
+        label: Paragraphs
+        label_singular: Paragraph
+        widget: list
+        i18n: true
+        fields:
+          - { label: Text, name: text, widget: text }
+      - { label: Operating Regions Label, name: operatingRegions, i18n: true }
+      - { label: Regions, name: regions, i18n: true }
+      - { label: Request Service Button, name: requestService, i18n: true }
+      - { label: Ask Question Button, name: askQuestion, i18n: true }
+
+  # ── Services Section ──
+  - name: services
+    label: Services
+    icon: settings
+    file: src/data/services_all.yaml
+    i18n: true
+    fields:
+      - { label: Section Title, name: title, i18n: true }
+      - { label: Section Subtitle, name: subtitle, widget: text, i18n: true }
+      - name: cards
+        label: Service Cards
+        label_singular: Card
+        widget: list
+        i18n: true
+        fields:
+          - { label: Title, name: title, i18n: true }
+          - { label: Subtitle, name: subtitle, i18n: true }
+          - { label: Button Text, name: button, i18n: true }
+          - { label: Description, name: description, widget: text, i18n: true }
+          - { label: Advantages Label, name: advantagesLabel, i18n: true, hint: 'e.g. "Key Advantages:" or "Our Services:"' }
+          - name: advantages
+            label: Advantages
+            label_singular: Advantage
+            widget: list
+            i18n: true
+            fields:
+              - { label: Text, name: text, i18n: true }
+          - { label: Extra Description, name: extraDescription, widget: text, i18n: true, required: false, hint: 'Optional text below advantages (e.g. Design Services box)' }
+          - { label: Footer Label, name: footerLabel, i18n: true, required: false, hint: 'e.g. "Coverage:" or "Our Network:"' }
+          - { label: Footer Value, name: footerValue, i18n: true, required: false, hint: 'e.g. "Europe, Asia, Middle East"' }
+
+  # ── Service Sections (Decor, Parts, Other Goods, Trade) ──
+  - name: serviceSections
+    label: Service Sections
+    icon: layers
+    file: src/data/services_sections.yaml
+    i18n: true
+    fields:
+      - name: sections
+        label: Sections
+        label_singular: Section
+        widget: list
+        i18n: true
+        fields:
+          - { label: Section ID, name: id, widget: string, i18n: false, hint: 'Unique identifier: decor, parts, goods, trade' }
+          - { label: Title, name: title, i18n: true }
+          - { label: Subtitle, name: subtitle, i18n: true }
+          - name: paragraphs
+            label: Description Paragraphs
+            label_singular: Paragraph
+            widget: list
+            i18n: true
+            fields:
+              - { label: Text, name: text, widget: text, i18n: true }
+          - name: carousel
+            label: Carousel Items
+            label_singular: Item
+            widget: list
+            i18n: true
+            fields:
+              - { label: Name, name: name, i18n: true }
+              - { label: Image, name: image, widget: image, i18n: false }
+          - { label: Carousel Title, name: carouselTitle, i18n: true }
+          - { label: Advantages Title, name: advantagesTitle, i18n: true }
+          - name: advantages
+            label: Advantages
+            label_singular: Advantage
+            widget: list
+            i18n: true
+            fields:
+              - { label: Text, name: text, i18n: true }
+          - { label: Bottom Title, name: bottomTitle, i18n: true }
+          - { label: Bottom Description, name: bottomDescription, widget: text, i18n: true }
+          - { label: Bottom Image, name: bottomImage, widget: image, i18n: false }
+
+  # ── Site Settings (Contacts, Menu) ──
+  - name: settings
+    label: Site Settings
+    icon: settings-2
+    file: src/data/settings.yaml
+    i18n: true
+    fields:
+      - { label: Phone Number, name: phone, i18n: false }
+      - { label: Email, name: email, i18n: false }
+      - name: headerMenu
+        label: Header Menu
+        widget: list
+        i18n: true
+        fields:
+          - { label: Label, name: label, i18n: true }
+          - { label: URL, name: url, i18n: false }
+          - name: children
+            label: Submenu Items
+            widget: list
+            i18n: true
+            required: false
+            fields:
+              - { label: Label, name: label, i18n: true }
+              - { label: URL, name: url, i18n: false }
+      - name: footerMenu
+        label: Footer Menu
+        widget: list
+        i18n: true
+        fields:
+          - { label: Label, name: label, i18n: true }
+          - { label: URL, name: url, i18n: false }
+      - { label: Request Callback Button, name: requestCallbackBtn, i18n: true }
+
+  # ── About Section ──
+  - name: about
+    label: About Section
+    icon: info
+    file: src/data/about.yaml
+    i18n: true
+    fields:
+      - { label: Title, name: title, i18n: true }
+      - name: paragraphs
+        label: Paragraphs
+        label_singular: Paragraph
+        widget: list
+        i18n: true
+        fields:
+          - { label: Text, name: text, widget: text, i18n: true }
+      - { label: Left Image, name: leftImage, widget: image, i18n: false }
+      - { label: Right Image, name: rightImage, widget: image, i18n: false }
+      - { label: Learn More Button, name: learnMoreBtn, i18n: true }
+
+  # ── How We Work Section ──
+  - name: howWeWork
+    label: How We Work
+    icon: workflow
+    file: src/data/work.yaml
+    i18n: true
+    fields:
+      - { label: Title, name: title, i18n: true }
+      - { label: Subtitle, name: subtitle, widget: text, i18n: true }
+      - name: steps
+        label: Work Steps
+        label_singular: Step
+        widget: list
+        i18n: true
+        fields:
+          - { label: Step Title, name: title, i18n: true }
+          - { label: Icon Name, name: icon, widget: string, i18n: false, hint: 'ClipboardList, Search, FileText, Banknote, Map, Box, ShieldCheck, Truck' }
+      - { label: Contact Us Title, name: contactUsTitle, i18n: true }
+      - { label: Email Label, name: emailLabel, i18n: true }
+      - { label: Phone Label, name: phoneLabel, i18n: true }
+      - { label: Request Consultation Title, name: requestConsultationTitle, i18n: true }
+      - { label: Request Consultation Description, name: requestConsultationDesc, widget: text, i18n: true }
+      - { label: Name Placeholder, name: namePlaceholder, i18n: true }
+      - { label: Company Placeholder, name: companyPlaceholder, i18n: true }
+      - { label: Phone Placeholder, name: phonePlaceholder, i18n: true }
+      - { label: Message Placeholder, name: messagePlaceholder, i18n: true }
+      - { label: Send Request Button, name: sendRequestBtn, i18n: true }

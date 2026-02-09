@@ -1,0 +1,19 @@
+en:
+  title: "About the Company"
+  paragraphs:
+    - text: "Royal Forwarding FZCO is an international trade and logistics company registered in the UAE Free Zone (Dubai, IFZA)."
+    - text: "We support cross-border trade operations by managing supplier relations, procurement processes, logistics, and documentation within a single structured framework."
+    - text: "Our mission is to simplify international trade, reduce operational risks, and ensure transparent, compliant, and efficient supply chains for our partners."
+  leftImage: "/src/assets/about/1.png"
+  rightImage: "/src/assets/about/2.png"
+  learnMoreBtn: "Learn More"
+
+ar:
+  title: "عن الشركة"
+  paragraphs:
+    - text: "رويال فورواردينغ FZCO هي شركة تجارة دولية وخدمات لوجستية مسجلة في المنطقة الحرة في الإمارات العربية المتحدة (دبي، IFZA)."
+    - text: "ندعم عمليات التجارة عبر الحدود من خلال إدارة علاقات الموردين وعمليات التوريد والخدمات اللوجستية والتوثيق في إطار منظم موحد."
+    - text: "مهمتنا هي تبسيط التجارة الدولية وتقليل المخاطر التشغيلية وضمان سلاسل توريد شفافة ومتوافقة وفعالة لشركائنا."
+  leftImage: "/src/assets/about/1.png"
+  rightImage: "/src/assets/about/2.png"
+  learnMoreBtn: "اعرف المزيد"

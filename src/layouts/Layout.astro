@@ -1,17 +1,14 @@
 ---
-import { Font } from "astro:assets";
-import "@/styles/global.css";
-import Header from "@/components/app/Header.astro";
-import Footer from "@/components/app/Footer.astro";
-import { getLangFromUrl, useTranslations } from "@/i18n";
+import { Font } from 'astro:assets';
+import '@/styles/global.css';
+import Header from '@/components/app/Header.astro';
+import Footer from '@/components/app/Footer.astro';
 
-const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
-const dir = lang === "ar" ? "rtl" : "ltr";
+const currentLocale = Astro.currentLocale || 'en';
 ---
 
 <!doctype html>
-<html lang={lang} dir={dir}>
+<html lang={currentLocale} dir={currentLocale === 'ar' ? 'rtl' : 'ltr'}>
   <head>
     <Font cssVariable="--font-sans" preload />
     <meta charset="UTF-8" />
@@ -19,13 +16,13 @@ const dir = lang === "ar" ? "rtl" : "ltr";
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
-    <title>{t("page.title")}</title>
+    <title>Royal Forwarding FZCO</title>
   </head>
   <body>
-    <Header lang={lang} />
-    <main class="overflow-x-hidden">
+    <Header lang={currentLocale} />
+    <main class="overflow-x-clip">
       <slot />
     </main>
-    <Footer lang={lang} />
+    <Footer lang={currentLocale} />
   </body>
 </html>

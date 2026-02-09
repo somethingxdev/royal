@@ -1,0 +1,329 @@
+---
+import { ClipboardList, Search, FileText, Banknote, Map, Box, ShieldCheck, Truck } from '@lucide/astro';
+import workData from '@/data/work.yaml';
+import settingsData from '@/data/settings.yaml';
+
+interface Step {
+  title: string;
+  icon: string;
+}
+
+interface WorkData {
+  title: string;
+  subtitle: string;
+  steps: Step[];
+  contactUsTitle: string;
+  emailLabel: string;
+  phoneLabel: string;
+  requestConsultationTitle: string;
+  requestConsultationDesc: string;
+  namePlaceholder: string;
+  companyPlaceholder: string;
+  phonePlaceholder: string;
+  messagePlaceholder: string;
+  sendRequestBtn: string;
+}
+
+interface Settings {
+  phone: string;
+  email: string;
+}
+
+interface Props {
+  lang: string;
+}
+
+const { lang } = Astro.props;
+const data = workData[lang] as WorkData;
+const settings = settingsData[lang] as Settings;
+
+// Icon mapping
+const iconMap: Record<string, any> = {
+  ClipboardList,
+  Search,
+  FileText,
+  Banknote,
+  Map,
+  Box,
+  ShieldCheck,
+  Truck,
+};
+
+interface ResolvedStep {
+  icon: any;
+  title: string;
+}
+
+const topRow: ResolvedStep[] = data.steps.slice(0, 4).map((step: Step) => ({
+  icon: iconMap[step.icon] || ClipboardList,
+  title: step.title,
+}));
+
+const bottomRow: ResolvedStep[] = data.steps
+  .slice(4, 8)
+  .reverse()
+  .map((step: Step) => ({
+    icon: iconMap[step.icon] || Truck,
+    title: step.title,
+  }));
+---
+
+<section class="py-20 bg-white">
+  <div class="container">
+    <div class="max-w-2xl mb-16">
+      <h2 class="text-3xl md:text-5xl font-bold text-primary mb-6">{data.title}</h2>
+      <p class="text-lg md:text-xl">{data.subtitle}</p>
+    </div>
+
+    <div class="hww-steps">
+      <div class="hww-row hww-row--top">
+        {
+          topRow.map((step: ResolvedStep, i: number) => (
+            <div class="hww-step">
+              <div class="hww-icon">
+                <step.icon class="w-7 h-7 text-primary" />
+              </div>
+              {i < topRow.length - 1 && (
+                <div class="hww-arrow hww-arrow--right" aria-hidden="true">
+                  <svg viewBox="0 0 12 8" fill="none">
+                    <path d="M8 1l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </div>
+              )}
+              <p class="hww-label">{step.title}</p>
+            </div>
+          ))
+        }
+      </div>
+
+      <div class="hww-connector-down" aria-hidden="true"></div>
+
+      <div class="hww-row hww-row--bottom">
+        {
+          bottomRow.map((step: ResolvedStep, i: number) => (
+            <div class="hww-step">
+              <div class="hww-icon">
+                <step.icon class="w-7 h-7 text-primary" />
+              </div>
+              {i < bottomRow.length - 1 && (
+                <div class="hww-arrow hww-arrow--left" aria-hidden="true">
+                  <svg viewBox="0 0 12 8" fill="none">
+                    <path d="M4 1L1 4l3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </div>
+              )}
+              <p class="hww-label">{step.title}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <div class="hww-mobile">
+      {
+        [...topRow, ...bottomRow.slice().reverse()].map((step: ResolvedStep, i: number, arr: ResolvedStep[]) => (
+          <div class="hww-mobile-step">
+            <div class="hww-mobile-icon">
+              <step.icon class="w-6 h-6 text-primary" />
+            </div>
+            <p class="hww-mobile-label">{step.title}</p>
+            {i < arr.length - 1 && <div class="hww-mobile-connector" aria-hidden="true" />}
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="grid lg:grid-cols-[280px_1px_1fr] mt-10 md:mt-20 gap-8 items-start">
+      <div class="text-white rounded-2xl p-6" style="background: linear-gradient(135deg, #916a2a 0%, #936C2C 51%, #B79647 75%, #DBD286 100%);">
+        <h3 class="text-2xl font-bold mb-6">{data.contactUsTitle}</h3>
+        <div class="mb-5">
+          <p class="font-semibold text-[#d4ff80] mb-1">{data.emailLabel}</p>
+          <p class="text-white font-medium">{settings.email}</p>
+        </div>
+        <div>
+          <p class="font-semibold text-[#d4ff80] mb-1">{data.phoneLabel}</p>
+          <p class="text-white font-medium">{settings.phone}</p>
+        </div>
+      </div>
+
+      <div class="hidden lg:block w-px bg-primary/30 self-stretch"></div>
+
+      <div>
+        <h3 class="text-2xl md:text-3xl font-bold mb-3 border-b-2 border-primary inline-block pb-1">{data.requestConsultationTitle}</h3>
+        <p class="mb-6">{data.requestConsultationDesc}</p>
+        <form class="space-y-4">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <input type="text" placeholder={data.namePlaceholder} class="border border-gray-300 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-primary" />
+            <input type="text" placeholder={data.companyPlaceholder} class="border border-gray-300 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-primary" />
+            <input type="tel" placeholder={data.phonePlaceholder} class="border border-gray-300 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-primary" />
+          </div>
+          <textarea placeholder={data.messagePlaceholder} rows="3" class="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-primary resize-none"></textarea>
+          <button type="submit" class="button text-white font-semibold px-8 py-3 rounded-lg hover:opacity-90 transition-opacity">
+            {data.sendRequestBtn}
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hww-steps {
+    display: none;
+  }
+
+  @media (min-width: 1024px) {
+    .hww-steps {
+      display: block;
+    }
+    .hww-mobile {
+      display: none;
+    }
+  }
+
+  .hww-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    position: relative;
+  }
+
+  .hww-step {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+    padding-right: 2rem;
+  }
+
+  .hww-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: 2px dashed #916a2a;
+    background: #faf6ee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hww-label {
+    margin-top: 0.75rem;
+    font-size: 0.875rem;
+    line-height: 1.4;
+    color: #916a2a;
+    font-weight: 500;
+  }
+
+  .hww-arrow {
+    position: absolute;
+    top: 28px;
+    height: 0;
+    border-top: 2px dashed #c4a265;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+  }
+
+  .hww-arrow svg {
+    width: 12px;
+    height: 8px;
+    color: #c4a265;
+    flex-shrink: 0;
+  }
+
+  .hww-arrow--right {
+    left: 64px;
+    right: -8px;
+  }
+
+  .hww-arrow--right svg {
+    position: absolute;
+    right: -2px;
+    top: -4px;
+  }
+
+  .hww-arrow--left {
+    left: 64px;
+    right: -8px;
+  }
+
+  .hww-arrow--left svg {
+    position: absolute;
+    left: -2px;
+    top: -4px;
+  }
+
+  .hww-connector-down {
+    width: 0;
+    height: 80px;
+    border-left: 2px dashed #c4a265;
+    margin-left: auto;
+    margin-right: calc(25% - 61px + 2rem);
+    position: relative;
+    transform: translateY(-15%);
+  }
+
+  .hww-row--bottom {
+    margin-top: 0;
+  }
+
+  .hww-row--bottom .hww-step {
+    direction: ltr;
+  }
+
+  .hww-mobile {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+  }
+
+  @media (min-width: 1024px) {
+    .hww-mobile {
+      display: none;
+    }
+  }
+
+  .hww-mobile-step {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    position: relative;
+    padding-bottom: 2rem;
+  }
+
+  .hww-mobile-step:last-child {
+    padding-bottom: 0;
+  }
+
+  .hww-mobile-icon {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    border-radius: 50%;
+    border: 2px dashed #916a2a;
+    background: #faf6ee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hww-mobile-label {
+    font-size: 0.875rem;
+    color: #916a2a;
+    font-weight: 500;
+  }
+
+  .hww-mobile-connector {
+    position: absolute;
+    left: 21px;
+    top: 46px;
+    bottom: 0;
+    width: 0;
+    border-left: 2px dashed #c4a265;
+  }
+</style>

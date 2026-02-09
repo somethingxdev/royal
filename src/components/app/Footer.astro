@@ -1,37 +1,46 @@
 ---
-import { Image } from "astro:assets";
-import logo from "@/assets/logo.png";
-import footerDecor from "@/assets/footer-decor.png";
-import { useTranslations, type Lang } from "@/i18n";
+import { Image } from 'astro:assets';
+import logo from '@/assets/logo.png';
+import footerDecor from '@/assets/footer-decor.png';
+import settingsData from '@/data/settings.yaml';
 
-interface Props {
-  lang: Lang;
+interface FooterMenuItem {
+  label: string;
+  url: string;
+}
+
+interface Settings {
+  phone: string;
+  email: string;
+  footerMenu: FooterMenuItem[];
 }
 
 const { lang } = Astro.props;
-const t = useTranslations(lang);
+const settings = settingsData[lang] as Settings;
+const currentYear = new Date().getFullYear();
 ---
 
-<footer class="bg-[#f0ece4] border-t border-[#d6cdb8] ">
+<footer class="bg-[#f0ece4] border-t border-[#d6cdb8]">
   <div class="container py-6 relative">
     <div class="flex flex-col lg:flex-row items-center justify-between gap-6 mb-4">
       <div class="flex flex-col md:flex-row items-center gap-5 md:gap-10">
         <Image src={logo} alt="Royal Forwarding" class="w-25 h-auto" />
-        <p class=" text-black" set:html={t("footer.copyright")} />
-        <a href="tel:+99999999999" class="text-black hover:text-primary transition-colors">+ 999 99 999 999 99</a>
-        <a href="mailto:pochta@mail.com" class="text-black hover:text-primary transition-colors">@pochta</a>
+        <p class="text-black">© LLC «Royal Forwarding», {currentYear}</p>
+        <a href={`tel:${settings.phone}`} class="text-black hover:text-primary transition-colors">{settings.phone}</a>
+        <a href={`mailto:${settings.email}`} class="text-black hover:text-primary transition-colors">{settings.email}</a>
       </div>
     </div>
 
     <nav class="flex flex-wrap items-center justify-center lg:justify-start gap-x-10 gap-y-2 pt-4 border-t border-[#d6cdb8]">
-      <a href="#about" class=" text-black hover:text-primary transition-colors">{t("footer.aboutCompany")}</a>
-      <a href="#services" class=" text-black hover:text-primary transition-colors">{t("footer.services")}</a>
-      <a href="#contacts" class=" text-black hover:text-primary transition-colors">{t("footer.contacts")}</a>
-      <a href="#privacy" class=" text-black hover:text-primary transition-colors">{t("footer.privacy")}</a>
-      <a href="#sitemap" class=" text-black hover:text-primary transition-colors">{t("footer.sitemap")}</a>
+      {
+        settings.footerMenu.map((item) => (
+          <a href={item.url} class="text-black hover:text-primary transition-colors">
+            {item.label}
+          </a>
+        ))
+      }
     </nav>
 
-      <Image src={footerDecor} alt="" class="absolute bottom-0 right-0 max-w-[150px] hidden md:block" aria-hidden="true" />
+    <Image src={footerDecor} alt="" class="absolute bottom-0 right-0 max-w-[150px] hidden md:block" aria-hidden="true" />
   </div>
-
 </footer>

@@ -1,0 +1,21 @@
+en:
+  title: ABOUT THE COMPANY ROYAL FORWARDING FZCO
+  paragraphs:
+    - text: Royal Forwarding FZCO is an international trade and logistics company registered in the UAE Free Zone (Dubai, IFZA).
+    - text: We support cross-border trade operations by managing supplier relations, procurement processes, logistics, and documentation within a single structured framework.
+    - text: Our mission is to simplify international trade, reduce operational risks, and ensure transparent, compliant, and efficient supply chains for our partners.
+  operatingRegions: Operating regions
+  regions: Europe · Turkey · China · Central Asia · United Arab Emirates
+  requestService: Request a service
+  askQuestion: Ask a question
+
+ar:
+  title: نبذة عن شركة ROYAL FORWARDING FZCO
+  paragraphs:
+    - text: ROYAL FORWARDING FZCO هي شركة تجارة دولية ولوجستيات مسجلة في المنطقة الحرة بدولة الإمارات العربية المتحدة (دبي، IFZA).
+    - text: ندعم عمليات التجارة العابرة للحدود من خلال إدارة علاقات المورّدين وعمليات الشراء واللوجستيات والوثائق ضمن إطار عمل موحّد ومنظّم.
+    - text: تتمثل مهمتنا في تبسيط التجارة الدولية وتقليل المخاطر التشغيلية وضمان سلاسل توريد شفافة ومتوافقة وفعّالة لشركائنا.
+  operatingRegions: مناطق التشغيل
+  regions: أوروبا · تركيا · الصين · آسيا الوسطى · الإمارات العربية المتحدة
+  requestService: طلب خدمة
+  askQuestion: طرح سؤال

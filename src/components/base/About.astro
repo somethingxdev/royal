@@ -1,0 +1,87 @@
+---
+import { Image } from "astro:assets";
+import aboutData from "@/data/about.yaml";
+
+interface AboutData {
+  title: string;
+  paragraphs: { text: string }[];
+  leftImage: string;
+  rightImage: string;
+  learnMoreBtn: string;
+}
+
+interface Props {
+  lang: string;
+}
+
+const { lang } = Astro.props;
+const data = aboutData[lang] as AboutData;
+
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/**/*.{jpeg,jpg,png,gif}",
+);
+
+const leftImagePath = data.leftImage;
+const rightImagePath = data.rightImage;
+
+if (!images[leftImagePath]) {
+  throw new Error(`"${leftImagePath}" does not exist in glob`);
+}
+if (!images[rightImagePath]) {
+  throw new Error(`"${rightImagePath}" does not exist in glob`);
+}
+
+const leftImage = images[leftImagePath]();
+const rightImage = images[rightImagePath]();
+---
+
+<section
+  class="py-10 md:py-20 overflow-hidden"
+  style="background: linear-gradient(135deg, #916a2a 0%, #936C2C 51%, #B79647 75%, #DBD286 100%);"
+>
+  <div class="container relative">
+    <div class="grid lg:grid-cols-2 gap-5 items-start">
+      <div class="space-y-5">
+        <h2 class="text-3xl md:text-5xl font-bold text-[#d4ff80]">
+          {data.title}
+        </h2>
+
+        <div class="bg-[rgba(0,0,0,0.2)] rounded-lg p-8 space-y-6">
+          {
+            data.paragraphs
+              .slice(0, 2)
+              .map((p: { text: string }) => (
+                <p class="md:text-lg text-white font-medium">{p.text}</p>
+              ))
+          }
+        </div>
+
+        <div class="rounded-lg overflow-hidden">
+          <Image
+            src={leftImage}
+            alt="International Logistics"
+            class="w-full h-auto"
+          />
+        </div>
+      </div>
+
+      <div class="space-y-5">
+        <div class="rounded-lg overflow-hidden">
+          <Image src={rightImage} alt="Our Team" class="w-full h-auto" />
+        </div>
+
+        <div class="bg-[rgba(0,0,0,0.2)] rounded-lg p-8">
+          <p class="md:text-lg text-white font-medium">
+            {data.paragraphs[2]?.text}
+          </p>
+        </div>
+
+        <button
+          class="w-full bg-white text-[#916a2a] font-bold py-3 px-6 rounded-lg hover:bg-gray-100 transition-colors"
+        >
+          {data.learnMoreBtn}
+        </button>
+      </div>
+    </div>
+  </div>
+</section>

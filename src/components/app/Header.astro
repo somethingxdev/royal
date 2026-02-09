@@ -1,93 +1,94 @@
 ---
-import { Image } from "astro:assets";
-import { Button } from "../starwind/button";
-import { Dropdown, DropdownTrigger, DropdownContent, DropdownItem, DropdownLabel, DropdownSeparator } from "@/components/starwind/dropdown";
-import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle, SheetClose } from "@/components/starwind/sheet";
-import { PhoneIcon, MailIcon, ChevronDownIcon, MenuIcon, XIcon } from "@lucide/astro";
-import { useTranslations, getLocalePath, type Lang } from "@/i18n";
+import { Image } from 'astro:assets';
+import { Button } from '../starwind/button';
+import { Dropdown, DropdownTrigger, DropdownContent, DropdownItem } from '@/components/starwind/dropdown';
+import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle } from '@/components/starwind/sheet';
+import { PhoneIcon, MailIcon, ChevronDownIcon, MenuIcon } from '@lucide/astro';
+import { getRelativeLocaleUrl } from 'astro:i18n';
 
-interface Props {
-  lang: Lang;
+import settingsData from '@/data/settings.yaml';
+
+interface MenuChild {
+  label: string;
+  url: string;
+}
+
+interface MenuItem {
+  label: string;
+  url: string;
+  children?: MenuChild[];
+}
+
+interface Settings {
+  phone: string;
+  email: string;
+  requestCallbackBtn: string;
+  headerMenu: MenuItem[];
 }
 
 const { lang } = Astro.props;
-const t = useTranslations(lang);
-const otherLang = lang === "en" ? "ar" : "en";
-const otherLangLabel = lang === "en" ? "AR" : "EN";
-const currentLangLabel = lang === "en" ? "EN" : "AR";
-const switchUrl = getLocalePath(otherLang);
+const currentLangLabel = lang === 'en' ? 'EN' : 'AR';
+
+const settings = settingsData[lang] as Settings;
 ---
 
 <header class="py-2">
   <div class="container">
     <div class="flex items-center justify-between md:mb-5">
       <div class="flex items-center gap-2">
-        <a href={getLocalePath(lang)}>
-          <Image src={import("@/assets/logo.png")} alt="logo" class="h-15 w-auto" />
+        <a href={getRelativeLocaleUrl(lang)}>
+          <Image src={import('@/assets/logo.png')} alt="logo" class="h-15 w-auto" />
         </a>
         <div class="hidden md:flex items-center gap-5">
-          <a href="tel:+996555989710" class="text-black lg:text-xl font-medium flex items-center gap-2"> <PhoneIcon size={20} />+996 555 989 710</a>
-          <a href="mailto:royal@gmail.com" class="text-black lg:text-xl font-medium flex items-center gap-2"> <MailIcon size={20} />royal@gmail.com</a>
+          <a href={`tel:${settings.phone}`} class="text-black lg:text-xl font-medium flex items-center gap-2"> <PhoneIcon size={20} />{settings.phone}</a>
+          <a href={`mailto:${settings.email}`} class="text-black lg:text-xl font-medium flex items-center gap-2"> <MailIcon size={20} />{settings.email}</a>
         </div>
       </div>
       <div class="flex items-center gap-5">
         <div class="flex items-center gap-5">
-          <Button class="button" size="sm">{t("header.requestCallback")}</Button>
+          <Button class="button">{settings.requestCallbackBtn}</Button>
           <Dropdown class="hidden md:block">
             <DropdownTrigger asChild>
-              <Button variant="outline" size="sm">{currentLangLabel} <ChevronDownIcon size={24} /> </Button>
+              <Button variant="outline">{currentLangLabel} <ChevronDownIcon size={24} /> </Button>
             </DropdownTrigger>
-            <DropdownContent>
-              <DropdownItem><a href={getLocalePath("en")} class="block w-full">EN</a></DropdownItem>
-              <DropdownItem><a href={getLocalePath("ar")} class="block w-full">AR</a></DropdownItem>
+            <DropdownContent align="end">
+              <DropdownItem><a href={getRelativeLocaleUrl('en')} class="block w-full">EN</a></DropdownItem>
+              <DropdownItem><a href={getRelativeLocaleUrl('ar')} class="block w-full">AR</a></DropdownItem>
             </DropdownContent>
           </Dropdown>
         </div>
 
-        <!-- Mobile Menu Sheet -->
         <Sheet>
           <SheetTrigger asChild class="md:hidden">
             <MenuIcon size={24} />
           </SheetTrigger>
-          <SheetContent side="right" class="w-[300px] sm:w-[400px]">
-            <SheetHeader>
-              <SheetTitle class="text-2xl font-bold text-[#916a2a]">{t("header.menu")}</SheetTitle>
-            </SheetHeader>
-            <nav class="flex flex-col gap-6 py-8">
+          <SheetContent side="right">
+            <nav class="flex flex-col gap-6 p-8">
               <ul class="flex flex-col gap-4 font-medium text-lg">
-                <li><a href="#" class="text-[#916a2a] hover:text-[#b79647] transition-colors">{t("header.home")}</a></li>
-                <li><a href="#" class="text-[#916a2a] hover:text-[#b79647] transition-colors">{t("header.aboutUs")}</a></li>
-                <li>
-                  <Dropdown>
-                    <DropdownTrigger asChild>
-                      <Button variant="ghost" class="text-[#916a2a] hover:text-[#b79647] text-lg px-0 hover:bg-transparent">
-                        {t("header.services")} <ChevronDownIcon size={20} />
-                      </Button>
-                    </DropdownTrigger>
-                    <DropdownContent>
-                      <DropdownItem>{t("header.service1")}</DropdownItem>
-                      <DropdownItem>{t("header.service2")}</DropdownItem>
-                      <DropdownItem>{t("header.service3")}</DropdownItem>
-                    </DropdownContent>
-                  </Dropdown>
-                </li>
-                <li><a href="#" class="text-[#916a2a] hover:text-[#b79647] transition-colors">{t("header.contactUs")}</a></li>
+                {
+                  settings.headerMenu.map((item) => (
+                    <li>
+                      <a href={item.url} class="text-[#916a2a] hover:text-[#b79647] transition-colors">
+                        {item.label}
+                      </a>
+                    </li>
+                  ))
+                }
               </ul>
 
               <div class="flex flex-col gap-3 pt-6 border-t border-[#b79647]/30">
-                <a href="tel:+996555989710" class="text-[#916a2a] text-lg font-medium flex items-center gap-2">
-                  <PhoneIcon size={20} />+996 555 989 710
+                <a href={`tel:${settings.phone}`} class="text-[#916a2a] text-lg font-medium flex items-center gap-2">
+                  <PhoneIcon size={20} />{settings.phone}
                 </a>
-                <a href="mailto:royal@gmail.com" class="text-[#916a2a] text-lg font-medium flex items-center gap-2">
-                  <MailIcon size={20} />royal@gmail.com
+                <a href={`mailto:${settings.email}`} class="text-[#916a2a] text-lg font-medium flex items-center gap-2">
+                  <MailIcon size={20} />{settings.email}
                 </a>
               </div>
 
               <div class="flex flex-col gap-4 pt-4">
-                <Button class="w-full" size="lg">{t("header.requestCallback")}</Button>
                 <div class="flex items-center justify-center gap-2">
-                  <a href={getLocalePath("en")} class="flex-1"><Button variant="outline" class="w-full">EN</Button></a>
-                  <a href={getLocalePath("ar")} class="flex-1"><Button variant="outline" class="w-full">AR</Button></a>
+                  <a href={getRelativeLocaleUrl('en')} class="flex-1"><Button variant="outline" class="w-full">EN</Button></a>
+                  <a href={getRelativeLocaleUrl('ar')} class="flex-1"><Button variant="outline" class="w-full">AR</Button></a>
                 </div>
               </div>
             </nav>
@@ -100,21 +101,13 @@ const switchUrl = getLocalePath(otherLang);
   <nav class="hidden md:block bg-primary-light/60 rounded-lg px-8 py-1">
     <div class="container">
       <ul class="flex items-center gap-10 font-medium lg:text-xl">
-        <li><a href="#">{t("header.home")}</a></li>
-        <li><a href="#">{t("header.aboutUs")}</a></li>
-        <li>
-          <Dropdown>
-            <DropdownTrigger asChild>
-              <Button variant="ghost" class="has-[>svg]:px-0 hover:bg-transparent lg:text-xl [&_svg:not([class*='size-'])]:size-5">{t("header.services")} <ChevronDownIcon size={30} /> </Button>
-            </DropdownTrigger>
-            <DropdownContent>
-              <DropdownItem>{t("header.service1")}</DropdownItem>
-              <DropdownItem>{t("header.service2")}</DropdownItem>
-              <DropdownItem>{t("header.service3")}</DropdownItem>
-            </DropdownContent>
-          </Dropdown>
-        </li>
-        <li><a href="#">{t("header.contactUs")}</a></li>
+        {
+          settings.headerMenu.map((item) => (
+            <li>
+              <a href={item.url}>{item.label}</a>
+            </li>
+          ))
+        }
       </ul>
     </div>
   </nav>
