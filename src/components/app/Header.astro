@@ -2,7 +2,7 @@
 import { Image } from 'astro:assets';
 import { Button } from '../starwind/button';
 import { Dropdown, DropdownTrigger, DropdownContent, DropdownItem } from '@/components/starwind/dropdown';
-import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle } from '@/components/starwind/sheet';
+import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle, SheetClose } from '@/components/starwind/sheet';
 import { PhoneIcon, MailIcon, ChevronDownIcon, MenuIcon } from '@lucide/astro';
 import { getRelativeLocaleUrl } from 'astro:i18n';
 
@@ -30,23 +30,25 @@ const { lang } = Astro.props;
 const currentLangLabel = lang === 'en' ? 'EN' : 'AR';
 
 const settings = settingsData[lang] as Settings;
+
+const cleanPhone = settings.phone.replace(/[()\s-]/g, '');
 ---
 
-<header class="py-2">
+<header id="site-header" class="py-2 md:pb-0 sticky top-0 left-0 w-full z-50 bg-white transition-shadow duration-300">
   <div class="container">
-    <div class="flex items-center justify-between md:mb-5">
+    <div class="flex items-center justify-between md:py-2">
       <div class="flex items-center gap-2">
         <a href={getRelativeLocaleUrl(lang)}>
           <Image src={import('@/assets/logo.png')} alt="logo" class="h-15 w-auto" />
         </a>
         <div class="hidden md:flex items-center gap-5">
-          <a href={`tel:${settings.phone}`} class="text-black lg:text-xl font-medium flex items-center gap-2"> <PhoneIcon size={20} />{settings.phone}</a>
+          <a href={`tel:${cleanPhone}`} class="text-black lg:text-xl font-medium flex items-center gap-2"> <PhoneIcon size={20} />{settings.phone}</a>
           <a href={`mailto:${settings.email}`} class="text-black lg:text-xl font-medium flex items-center gap-2"> <MailIcon size={20} />{settings.email}</a>
         </div>
       </div>
       <div class="flex items-center gap-5">
         <div class="flex items-center gap-5">
-          <Button class="button">{settings.requestCallbackBtn}</Button>
+          <Button class="button" href="#contacts">{settings.requestCallbackBtn}</Button>
           <Dropdown class="hidden md:block">
             <DropdownTrigger asChild>
               <Button variant="outline">{currentLangLabel} <ChevronDownIcon size={24} /> </Button>
@@ -68,16 +70,18 @@ const settings = settingsData[lang] as Settings;
                 {
                   settings.headerMenu.map((item) => (
                     <li>
-                      <a href={item.url} class="text-[#916a2a] hover:text-[#b79647] transition-colors">
-                        {item.label}
-                      </a>
+                      <SheetClose asChild>
+                        <a href={item.url} class="text-[#916a2a] hover:text-[#b79647] transition-colors uppercase">
+                          {item.label}
+                        </a>
+                      </SheetClose>
                     </li>
                   ))
                 }
               </ul>
 
               <div class="flex flex-col gap-3 pt-6 border-t border-[#b79647]/30">
-                <a href={`tel:${settings.phone}`} class="text-[#916a2a] text-lg font-medium flex items-center gap-2">
+                <a href={`tel:${cleanPhone}`} class="text-[#916a2a] text-lg font-medium flex items-center gap-2">
                   <PhoneIcon size={20} />{settings.phone}
                 </a>
                 <a href={`mailto:${settings.email}`} class="text-[#916a2a] text-lg font-medium flex items-center gap-2">
@@ -98,12 +102,12 @@ const settings = settingsData[lang] as Settings;
     </div>
   </div>
 
-  <nav class="hidden md:block bg-primary-light/60 rounded-lg px-8 py-1">
+  <nav class="hidden md:block bg-primary-light/60 rounded-lg px-8 py-2.5">
     <div class="container">
       <ul class="flex items-center gap-10 font-medium lg:text-xl">
         {
           settings.headerMenu.map((item) => (
-            <li>
+            <li class="hover:text-primary transition-colors">
               <a href={item.url}>{item.label}</a>
             </li>
           ))
@@ -112,3 +116,18 @@ const settings = settingsData[lang] as Settings;
     </div>
   </nav>
 </header>
+
+<script>
+  const header = document.getElementById('site-header');
+  
+  function updateHeaderShadow() {
+    if (window.scrollY > 10) {
+      header?.classList.add('shadow-md');
+    } else {
+      header?.classList.remove('shadow-md');
+    }
+  }
+  
+  window.addEventListener('scroll', updateHeaderShadow, { passive: true });
+  updateHeaderShadow();
+</script>
