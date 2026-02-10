@@ -1,6 +1,6 @@
 ---
-import { Image } from "astro:assets";
-import type { ImageMetadata } from "astro";
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 
 interface Slide {
   name: string;
@@ -12,18 +12,14 @@ export interface Props {
   class?: string;
 }
 
-const { slides, class: className = "" } = Astro.props;
+const { slides, class: className = '' } = Astro.props;
 const swiperClass = `swiper w-full my-10 md:my-20 ${className}`.trim();
 
-const images = import.meta.glob<{ default: ImageMetadata }>(
-  "/src/assets/**/*.{jpeg,jpg,png,gif}"
-);
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/**/*.{jpeg,jpg,png,gif}');
 
 const resolvedSlides = slides.map((slide) => {
   if (!images[slide.imagePath]) {
-    throw new Error(
-      `"${slide.imagePath}" does not exist in glob: "/src/assets/**/*.{jpeg,jpg,png,gif}"`
-    );
+    throw new Error(`"${slide.imagePath}" does not exist in glob: "/src/assets/**/*.{jpeg,jpg,png,gif}"`);
   }
   return {
     name: slide.name,
@@ -38,16 +34,8 @@ const resolvedSlides = slides.map((slide) => {
       resolvedSlides.map((slide, index) => (
         <div class="swiper-slide" data-index={index}>
           <div class="relative overflow-hidden rounded-xl">
-            <Image
-              src={slide.image}
-              alt={slide.name}
-              width={320}
-              height={320}
-              class="size-full object-cover"
-            />
-            <div class="bg-[#d4ff80] px-6 py-2 text-center font-semibold text-sm whitespace-nowrap">
-              {slide.name}
-            </div>
+            <Image src={slide.image} alt={slide.name} class="size-full object-cover" />
+            <div class="bg-[#d4ff80] px-6 py-2 text-center font-semibold text-sm whitespace-nowrap">{slide.name}</div>
           </div>
         </div>
       ))
@@ -57,9 +45,9 @@ const resolvedSlides = slides.map((slide) => {
 </div>
 
 <style is:global>
-  @import "swiper/css";
-  @import "swiper/css/effect-coverflow";
-  @import "swiper/css/pagination";
+  @import 'swiper/css';
+  @import 'swiper/css/effect-coverflow';
+  @import 'swiper/css/pagination';
 
   .swiper-slide {
     background-position: center;
@@ -88,11 +76,11 @@ const resolvedSlides = slides.map((slide) => {
 </style>
 
 <script>
-  import Swiper from "swiper";
-  import { EffectCoverflow, Pagination } from "swiper/modules";
+  import Swiper from 'swiper';
+  import { EffectCoverflow, Pagination } from 'swiper/modules';
 
   function initCoverflowSwiper(container: HTMLElement) {
-    const slides = container.querySelectorAll(".swiper-slide");
+    const slides = container.querySelectorAll('.swiper-slide');
     const totalSlides = slides.length;
     const centerIndex = Math.floor(totalSlides / 2);
 
@@ -104,20 +92,20 @@ const resolvedSlides = slides.map((slide) => {
         grabCursor: true,
         centeredSlides: false,
         slidesPerView: 2,
-        freemode: true,
+        freeMode: true,
         initialSlide: 0,
         pagination: {
-          el: ".swiper-pagination",
+          el: '.swiper-pagination',
           clickable: true,
         },
       });
     } else {
       new Swiper(container, {
         modules: [EffectCoverflow],
-        effect: "coverflow",
+        effect: 'coverflow',
         grabCursor: true,
         centeredSlides: true,
-        slidesPerView: "auto",
+        slidesPerView: 'auto',
         spaceBetween: 15,
         initialSlide: centerIndex,
         coverflowEffect: {
@@ -128,7 +116,7 @@ const resolvedSlides = slides.map((slide) => {
           slideShadows: false,
         },
         pagination: {
-          el: ".swiper-pagination",
+          el: '.swiper-pagination',
           clickable: true,
         },
       });
@@ -136,16 +124,16 @@ const resolvedSlides = slides.map((slide) => {
   }
 
   function initAllSwipers() {
-    const swipers = document.querySelectorAll(".swiper[data-swiper=\"coverflow\"]");
+    const swipers = document.querySelectorAll('.swiper[data-swiper="coverflow"]');
     swipers.forEach((swiper) => {
-      if (swiper.classList.contains("swiper-initialized")) return;
+      if (swiper.classList.contains('swiper-initialized')) return;
       initCoverflowSwiper(swiper as HTMLElement);
     });
   }
 
   initAllSwipers();
 
-  document.addEventListener("astro:after-swap", () => {
+  document.addEventListener('astro:after-swap', () => {
     initAllSwipers();
   });
 </script>
