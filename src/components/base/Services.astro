@@ -1,17 +1,43 @@
 ---
-import { Image } from "astro:assets";
-import furnitureImg from "@/assets/services/furniture.png";
-import automotiveImg from "@/assets/services/automotive.png";
-import tradeImg from "@/assets/services/trade.png";
-import servicesData from "@/data/services_all.yaml";
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import servicesData from '@/data/services_all.yaml';
 
 interface Props {
   lang: string;
 }
 
+interface CardData {
+  image?: string;
+  title: string;
+  subtitle: string;
+  button: string;
+  description: string;
+  advantagesLabel?: string;
+  advantages?: { text: string }[];
+  extraDescription?: string;
+  footerLabel?: string;
+  footerValue?: string;
+}
+
+interface ResolvedCard extends CardData {
+  resolvedImage: Promise<any> | null;
+}
+
 const { lang } = Astro.props;
 const data = servicesData[lang];
-const images = [furnitureImg, automotiveImg, tradeImg];
+
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/**/*.{jpeg,jpg,png,gif}');
+
+const resolvedCards = data.cards.map((card: CardData) => {
+  if (card.image && !images[card.image]) {
+    throw new Error(`"${card.image}" does not exist in glob: "/src/assets/**/*.{jpeg,jpg,png,gif}"`);
+  }
+  return {
+    ...card,
+    resolvedImage: card.image ? images[card.image]() : null,
+  };
+});
 ---
 
 <section id="services" class="py-10 md:py-20 border-b border-gray-200">
@@ -26,7 +52,7 @@ const images = [furnitureImg, automotiveImg, tradeImg];
 
     <div class="space-y-12">
       {
-        data.cards.map((card: { title: string; subtitle: string; button: string; description: string; advantagesLabel?: string; advantages?: { text: string }[]; extraDescription?: string; footerLabel?: string; footerValue?: string }, index: number) => (
+        resolvedCards.map((card: ResolvedCard, index: number) => (
           <div class="grid md:grid-cols-[1fr_2fr] items-stretch gap-5 relative">
 
            
@@ -34,7 +60,7 @@ const images = [furnitureImg, automotiveImg, tradeImg];
             <div class="relative flex items-start h-auto gap-2">
               <div class="size-15 bg-linear-to-b from-[#956e2d] to-[#b79647] z-10 hidden md:block rounded-sm opacity-80 shrink-0 sticky top-5" />
               <div class="rounded-sm overflow-hidden shadow-lg h-60 w-full md:size-full">
-                <Image src={images[index]} alt={card.title} class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                {card.resolvedImage && <Image src={card.resolvedImage} alt={card.title} class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />}
               </div>
             </div>
 

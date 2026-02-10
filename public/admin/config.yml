@@ -62,7 +62,7 @@ singletons:
               - { label: Text, name: text, i18n: true }
           - { label: Extra Description, name: extraDescription, widget: text, i18n: true, required: false, hint: 'Optional text below advantages (e.g. Design Services box)' }
           - { label: Footer Label, name: footerLabel, i18n: true, required: false, hint: 'e.g. "Coverage:" or "Our Network:"' }
-          - { label: Footer Value, name: footerValue, i18n: true, required: false, hint: 'e.g. "Europe, Asia, Middle East"' }
+          - { label: Image, name: image, widget: image, i18n: false, hint: 'Card image (e.g. /src/assets/services/furniture.png)' }
 
   # ── Service Sections (Decor, Parts, Other Goods, Trade) ──
   - name: serviceSections
