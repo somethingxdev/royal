@@ -42,9 +42,10 @@ if (!images[data.bottomImagePath]) {
 const bottomImage = images[data.bottomImagePath]();
 ---
 
-<section class="py-10 md:py-20 border-b border-gray-200">
-  <div class="container relative">
-    {/* Header */}
+<section class="py-10 md:py-20 border-b border-gray-200 relative">
+  <Image src={import('@/assets/section-decor-bottom.png')} alt="decor" class="absolute bottom-0 -left-65 max-w-sm -z-5" />
+  <Image src={import('@/assets/section-decor-top.png')} alt="decor" class="absolute -top-15 -right-65 max-w-sm -z-5" />
+  <div class="container relative z-5">
     <div class="mb-10 space-y-5">
       <h2 class="text-3xl md:text-5xl font-bold text-[#916a2a]">
         {data.title}
@@ -57,8 +58,6 @@ const bottomImage = images[data.bottomImagePath]();
         {data.paragraphs.map((p) => <p>{p}</p>)}
       </div>
     </div>
-
-    {/* Carousel */}
     <h3 class="text-2xl md:text-3xl font-bold text-[#916a2a] mb-5 md:mb-10">
       {data.carouselTitle}
     </h3>

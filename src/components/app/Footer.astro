@@ -41,6 +41,6 @@ const currentYear = new Date().getFullYear();
       }
     </nav>
 
-    <Image src={footerDecor} alt="" class="absolute bottom-0 right-0 max-w-[150px] hidden md:block" aria-hidden="true" />
+    <Image src={footerDecor} alt="" class={`absolute bottom-0 hidden md:block max-w-[150px] ${lang === 'ar' ? 'left-0 -scale-x-100' : 'right-0'}`} aria-hidden="true" />
   </div>
 </footer>

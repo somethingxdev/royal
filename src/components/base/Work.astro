@@ -1,7 +1,7 @@
 ---
 import { ClipboardList, Search, FileText, Banknote, Map, Box, ShieldCheck, Truck } from '@lucide/astro';
 import workData from '@/data/work.yaml';
-import settingsData from '@/data/settings.yaml';
+import Contacts from './Contacts.astro';
 
 interface Step {
   title: string;
@@ -12,21 +12,6 @@ interface WorkData {
   title: string;
   subtitle: string;
   steps: Step[];
-  contactUsTitle: string;
-  emailLabel: string;
-  phoneLabel: string;
-  requestConsultationTitle: string;
-  requestConsultationDesc: string;
-  namePlaceholder: string;
-  companyPlaceholder: string;
-  phonePlaceholder: string;
-  messagePlaceholder: string;
-  sendRequestBtn: string;
-}
-
-interface Settings {
-  phone: string;
-  email: string;
 }
 
 interface Props {
@@ -35,7 +20,6 @@ interface Props {
 
 const { lang } = Astro.props;
 const data = workData[lang] as WorkData;
-const settings = settingsData[lang] as Settings;
 
 // Icon mapping
 const iconMap: Record<string, any> = {
@@ -133,36 +117,8 @@ const bottomRow: ResolvedStep[] = data.steps
       }
     </div>
 
-    <div class="grid lg:grid-cols-[280px_1px_1fr] mt-10 md:mt-20 gap-8 items-start" id="contacts">
-      <div class="text-white rounded-2xl p-6" style="background: linear-gradient(135deg, #916a2a 0%, #936C2C 51%, #B79647 75%, #DBD286 100%);">
-        <h3 class="text-2xl font-bold mb-6">{data.contactUsTitle}</h3>
-        <div class="mb-5">
-          <p class="font-semibold text-[#d4ff80] mb-1">{data.emailLabel}</p>
-          <p class="text-white font-medium">{settings.email}</p>
-        </div>
-        <div>
-          <p class="font-semibold text-[#d4ff80] mb-1">{data.phoneLabel}</p>
-          <p class="text-white font-medium">{settings.phone}</p>
-        </div>
-      </div>
-
-      <div class="hidden lg:block w-px bg-primary/30 self-stretch"></div>
-
-      <div>
-        <h3 class="text-2xl md:text-3xl font-bold mb-3 border-b-2 border-primary inline-block pb-1">{data.requestConsultationTitle}</h3>
-        <p class="mb-6">{data.requestConsultationDesc}</p>
-        <form class="space-y-4">
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <input type="text" placeholder={data.namePlaceholder} class="border border-gray-300 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-primary" />
-            <input type="text" placeholder={data.companyPlaceholder} class="border border-gray-300 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-primary" />
-            <input type="tel" placeholder={data.phonePlaceholder} class="border border-gray-300 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-primary" />
-          </div>
-          <textarea placeholder={data.messagePlaceholder} rows="3" class="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-primary resize-none"></textarea>
-          <button type="submit" class="button text-white font-semibold px-8 py-3 rounded-lg hover:opacity-90 transition-opacity">
-            {data.sendRequestBtn}
-          </button>
-        </form>
-      </div>
+    <div class="mt-10 md:mt-20">
+      <Contacts lang={lang} />
     </div>
   </div>
 </section>

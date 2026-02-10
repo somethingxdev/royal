@@ -1,0 +1,194 @@
+---
+import workData from '@/data/work.yaml';
+import settingsData from '@/data/settings.yaml';
+
+interface WorkData {
+  contactUsTitle: string;
+  emailLabel: string;
+  phoneLabel: string;
+  requestConsultationTitle: string;
+  requestConsultationDesc: string;
+  namePlaceholder: string;
+  companyPlaceholder: string;
+  phonePlaceholder: string;
+  messagePlaceholder: string;
+  sendRequestBtn: string;
+}
+
+interface Settings {
+  phone: string;
+  email: string;
+}
+
+interface Props {
+  lang: string;
+}
+
+const { lang } = Astro.props;
+const data = workData[lang] as WorkData;
+const settings = settingsData[lang] as Settings;
+---
+
+<div class="grid lg:grid-cols-[280px_1px_1fr] gap-8 items-start" id="contacts">
+  <div class="text-white rounded-2xl p-6" style="background: linear-gradient(135deg, #916a2a 0%, #936C2C 51%, #B79647 75%, #DBD286 100%);">
+    <h3 class="text-2xl font-bold mb-6">{data.contactUsTitle}</h3>
+    <div class="mb-5">
+      <p class="font-semibold text-[#d4ff80] mb-1">{data.emailLabel}</p>
+      <p class="text-white font-medium text-lg">{settings.email}</p>
+    </div>
+    <div>
+      <p class="font-semibold text-[#d4ff80] mb-1">{data.phoneLabel}</p>
+      <p class="text-white font-medium text-lg">{settings.phone}</p>
+    </div>
+  </div>
+
+  <div class="hidden lg:block w-px bg-primary/30 self-stretch"></div>
+
+  <div>
+    <h3 class="text-2xl md:text-3xl font-bold mb-3 border-b-2 border-primary inline-block pb-1">{data.requestConsultationTitle}</h3>
+    <p class="mb-6">{data.requestConsultationDesc}</p>
+    <form id="contact-form" class="space-y-4">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="space-y-1">
+          <input
+            type="text"
+            name="user_name"
+            placeholder={data.namePlaceholder}
+            class="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-primary transition-colors"
+          />
+          <p class="error-message text-red-500 text-xs hidden" data-error="user_name"></p>
+        </div>
+        <div class="space-y-1">
+          <input
+            type="text"
+            name="company"
+            placeholder={data.companyPlaceholder}
+            class="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-primary transition-colors"
+          />
+          <p class="error-message text-red-500 text-xs hidden" data-error="company"></p>
+        </div>
+        <div class="space-y-1">
+          <input
+            type="tel"
+            name="phone"
+            placeholder={data.phonePlaceholder}
+            class="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-primary transition-colors"
+          />
+          <p class="error-message text-red-500 text-xs hidden" data-error="phone"></p>
+        </div>
+      </div>
+      <div class="space-y-1">
+        <textarea
+          name="message"
+          placeholder={data.messagePlaceholder}
+          rows="3"
+          class="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-primary resize-none transition-colors"></textarea>
+        <p class="error-message text-red-500 text-xs hidden" data-error="message"></p>
+      </div>
+      <button type="submit" id="submit-btn" class="button text-white font-semibold px-8 py-3 rounded-lg hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed">
+        {data.sendRequestBtn}
+      </button>
+    </form>
+  </div>
+</div>
+
+<script>
+  import { z } from 'astro/zod';
+  import emailjs from '@emailjs/browser';
+  import { toast } from '@/components/starwind/toast';
+
+  const SERVICE_ID = 'service_fp0qp2n';
+  const TEMPLATE_ID = 'template_c0bi43b';
+  const PUBLIC_KEY = '76c3fFMb82LKBSmtA';
+
+  const formSchema = z.object({
+    user_name: z.string().min(2, 'Name must be at least 2 characters'),
+    company: z.string().min(1, 'Company is required'),
+    phone: z.string().min(5, 'Phone must be at least 5 characters').regex(/^\+?[0-9]+$/, 'Phone must contain only numbers and +'),
+    message: z.string().optional(),
+  });
+
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+
+  function showError(field: string, message: string | null) {
+    const input = form.querySelector(`[name="${field}"]`) as HTMLElement;
+    const errorEl = form.querySelector(`[data-error="${field}"]`) as HTMLParagraphElement;
+
+    if (message) {
+      input.classList.add('border-red-500', 'focus:border-red-500');
+      input.classList.remove('border-gray-300', 'focus:border-primary');
+      errorEl.textContent = message;
+      errorEl.classList.remove('hidden');
+    } else {
+      input.classList.remove('border-red-500', 'focus:border-red-500');
+      input.classList.add('border-gray-300', 'focus:border-primary');
+      errorEl.classList.add('hidden');
+    }
+  }
+
+  function clearErrors() {
+    const fields = ['user_name', 'company', 'phone', 'message'];
+    fields.forEach((field) => showError(field, null));
+    const messageError = form.querySelector('[data-error="message"]') as HTMLParagraphElement;
+    if (messageError) messageError.classList.add('hidden');
+    const messageInput = form.querySelector('[name="message"]') as HTMLElement;
+    if (messageInput) {
+      messageInput.classList.remove('border-red-500', 'focus:border-red-500');
+      messageInput.classList.add('border-gray-300', 'focus:border-primary');
+    }
+  }
+
+
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    clearErrors();
+
+    const formData = new FormData(form);
+    const data = {
+      user_name: formData.get('user_name') as string,
+      company: formData.get('company') as string,
+      phone: formData.get('phone') as string,
+      message: formData.get('message') as string,
+    };
+
+    const result = formSchema.safeParse(data);
+
+    if (!result.success) {
+      const errors = result.error.flatten().fieldErrors;
+      Object.entries(errors).forEach(([field, messages]) => {
+        if (messages && messages.length > 0) {
+          showError(field, messages[0]);
+        }
+      });
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+
+    try {
+      await emailjs.send(
+        SERVICE_ID,
+        TEMPLATE_ID,
+        {
+          user_name: data.user_name,
+          company: data.company,
+          phone: data.phone,
+          message: data.message,
+        },
+        PUBLIC_KEY,
+      );
+
+      toast.success("Success!", { description: "Your message has been sent successfully." });
+      form.reset();
+    } catch (error) {
+      console.error('EmailJS error:', error);
+      toast.error("Something went wrong.", { description: "Please try again later." });
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = form.dataset.sendBtnText || 'Send Request';
+    }
+  });
+</script>

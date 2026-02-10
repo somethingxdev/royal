@@ -102,7 +102,7 @@
   --accent-foreground: var(--color-neutral-900);
   --info: var(--color-sky-300);
   --info-foreground: var(--color-sky-950);
-  --success: var(--color-green-300);
+  --success: var(--color-green-600);
   --success-foreground: var(--color-green-950);
   --warning: var(--color-amber-300);
   --warning-foreground: var(--color-amber-950);

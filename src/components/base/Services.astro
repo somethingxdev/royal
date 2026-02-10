@@ -15,6 +15,9 @@ const images = [furnitureImg, automotiveImg, tradeImg];
 ---
 
 <section id="services" class="py-10 md:py-20 border-b border-gray-200">
+
+
+
   <div class="container">
     <div class="mb-8 md:mb-16">
       <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-[#916a2a] mb-6">{data.title}</h2>
@@ -24,7 +27,10 @@ const images = [furnitureImg, automotiveImg, tradeImg];
     <div class="space-y-12">
       {
         data.cards.map((card: { title: string; subtitle: string; button: string; description: string; advantagesLabel?: string; advantages?: { text: string }[]; extraDescription?: string; footerLabel?: string; footerValue?: string }, index: number) => (
-          <div class="grid md:grid-cols-[1fr_2fr] items-stretch gap-5">
+          <div class="grid md:grid-cols-[1fr_2fr] items-stretch gap-5 relative">
+
+           
+
             <div class="relative flex items-start h-auto gap-2">
               <div class="size-15 bg-linear-to-b from-[#956e2d] to-[#b79647] z-10 hidden md:block rounded-sm opacity-80 shrink-0 sticky top-5" />
               <div class="rounded-sm overflow-hidden shadow-lg h-60 w-full md:size-full">
